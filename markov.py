@@ -29,13 +29,18 @@ def generator(wordDict, fname, numWords):
         if currWord not in wordDict.keys():
             currWord = random.choice(wordDict.keys())
         next = random.choice(wordDict.get(currWord))
-        output += currWord
+        if currWord[0] in "0 1 2 3 4 5 6 7 8 9" or ":" in currWord:
+            output += "\n\n"
+        output += currWord + " "
         currWord = next 
         counter += 1
     f = open(fname, "w+")
     f.write(output)
     f.close()
 
-d = train("resume_fun.txt")
-generator(d, "text1.txt", 100)
+trainFile = input("Please enter the file you'd like to train from: ")
+d = train(trainFile)
+outputFile = input("Please enter the desired name of the generated file: ")
+numWords = int(input("Please enter how many words you'd like to generate:"))
+generator(d, outputFile, numWords)
 
