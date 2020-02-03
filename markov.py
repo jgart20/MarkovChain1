@@ -29,6 +29,8 @@ def train(filename):
          print "File not found. Please try again."
 
 #function that generates text of a given length using the train dictionary above
+#assumes that location is in the same folder as train and that numWords >= 0
+
 def generator(wordDict, fname, numWords):
     counter = 0
     currWord = ""
@@ -37,6 +39,7 @@ def generator(wordDict, fname, numWords):
         if currWord not in wordDict.keys():
             currWord = random.choice(wordDict.keys())
         next = random.choice(wordDict.get(currWord))
+        #specific formatting for movie scripts or bible passages
         if currWord[0] in "0 1 2 3 4 5 6 7 8 9" or ":" in currWord:
             output += "\n\n"
         output += currWord + " "
