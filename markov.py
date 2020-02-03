@@ -1,5 +1,12 @@
+"""
+Name: Jeremy Gart
+Date: February 2nd, 2020
+Purpose: To create a working program that can make sentences based on a given input that mimic the
+style/wording of the original, otherwise known as a "Markov Chain".
+"""
 import random
 
+#function that creates a dictionary of words and the words that follow them based on an inputted source material
 def train(filename):
     try:
         f = open(filename, "r")
@@ -21,6 +28,7 @@ def train(filename):
     except:
          print "File not found. Please try again."
 
+#function that generates text of a given length using the train dictionary above
 def generator(wordDict, fname, numWords):
     counter = 0
     currWord = ""
@@ -38,6 +46,7 @@ def generator(wordDict, fname, numWords):
     f.write(output)
     f.close()
 
+#prompting and reading in inputs from the user
 trainFile = input("Please enter the file you'd like to train from: ")
 d = train(trainFile)
 outputFile = input("Please enter the desired name of the generated file: ")
